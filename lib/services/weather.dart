@@ -4,12 +4,12 @@ import 'location.dart';
 import 'networking.dart';
 
 final apiKey = dotenv.env['API_KEY'];
-const URL = 'https://api.openweathermap.org/data/2.5/weather';
+const url = 'https://api.openweathermap.org/data/2.5/weather';
 
 class WeatherModel {
   Future<dynamic> getCityWeather(String cityName) async {
     NetworkHelper networkHelper =
-        NetworkHelper('$URL?q=$cityName&appid=$apiKey&units=metric');
+        NetworkHelper('$url?q=$cityName&appid=$apiKey&units=metric');
     var weatherData = await networkHelper.getCurrentWeather();
     return weatherData;
   }
@@ -19,7 +19,7 @@ class WeatherModel {
     await location.getCurrentLocation();
 
     NetworkHelper networkHelper = NetworkHelper(
-        '$URL?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
+        '$url?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric');
     var weatherData = await networkHelper.getCurrentWeather();
     return weatherData;
   }

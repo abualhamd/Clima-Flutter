@@ -6,7 +6,7 @@ class NetworkHelper {
 
   NetworkHelper(this.url);
   Future getCurrentWeather() async {
-    http.Response response = await http.get(Uri.parse(this.url));
+    http.Response response = await http.get(Uri.parse(url));
     //var decodedData = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
