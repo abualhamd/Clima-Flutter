@@ -5,14 +5,16 @@ class NetworkHelper {
   String url;
 
   NetworkHelper(this.url);
-  Future getCurrentWeather() async {
+  Future<Map<String, dynamic>> getCurrentWeather() async {
     http.Response response = await http.get(Uri.parse(url));
     //var decodedData = jsonDecode(response.body);
 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
-      print(response.statusCode);
+      // TODO
+      throw Exception();
+      // print(response.statusCode);
     }
   }
 }

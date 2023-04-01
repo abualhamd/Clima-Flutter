@@ -1,93 +1,29 @@
-// import 'package:clima/screens/location_screen.dart';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_spinkit/flutter_spinkit.dart';
-// import 'package:clima/services/weather.dart';
+import 'package:clima/providers/weather_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:clima/services/weather.dart';
 
-// class LoadingScreen extends StatefulWidget {
-//   const LoadingScreen({Key key}) : super(key: key);
+import '../core/utils/routes_manager.dart';
 
-//   @override
-//   _LoadingScreenState createState() => _LoadingScreenState();
-// }
-
-// class _LoadingScreenState extends State<LoadingScreen> {
-//   double latitude, longitude;
-
-//   @override
-//   void initState() {
-//     getWeatherData();
-//     super.initState();
-//   }
+class LoadingScreen extends ConsumerWidget {
+  const LoadingScreen({Key? key}) : super(key: key);
   
-
-//   Future<void> getWeatherData() async {
-//     var weatherData = await WeatherModel().getLocationWeather();
-
-//     Navigator.push(
-//       context,
-//       MaterialPageRoute(
-//         builder: (context) {
-//           return LocationScreen(
-//             locationWeather: weatherData,
-//           );
-//         },
-//       ),
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Center(
-//         child: SpinKitDoubleBounce(
-//           color: Colors.white,
-//           size: 80,
-//         ),
-//       ),
-//     );
-//   }
-// }
-import 'package:clima/screens/location_screen.dart'; 
-import 'package:flutter/material.dart'; 
-import 'package:flutter_spinkit/flutter_spinkit.dart'; 
-import 'package:clima/services/weather.dart'; 
- class LoadingScreen extends StatefulWidget { 
-  const LoadingScreen({Key? key}) : super(key: key); 
-   @override 
-  _LoadingScreenState createState() => _LoadingScreenState(); 
-} 
- class _LoadingScreenState extends State<LoadingScreen> { 
-  double? latitude; 
-  double? longitude; 
-   @override 
-  void initState() { 
-    getWeatherData(); 
-    super.initState(); 
-  } 
-   Future<void> getWeatherData() async { 
-    var weatherData = await WeatherModel().getLocationWeather(); 
-    if (weatherData != null) { 
-      Navigator.push( 
-        context, 
-        MaterialPageRoute( 
-          builder: (context) { 
-            return LocationScreen( 
-              locationWeather: weatherData, 
-            ); 
-          }, 
-        ), 
-      ); 
-    } 
-  } 
-   @override 
-  Widget build(BuildContext context) { 
-    return Scaffold( 
-      body: Center( 
-        child: SpinKitDoubleBounce( 
-          color: Colors.white, 
-          size: 80, 
-        ), 
-      ), 
-    ); 
-  } 
-} 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Builder(builder: (context) {
+      WeatherServices().getLocationWeather().then((json) {
+        ref.read(cityProvider.notifier).changeCity(newCity: json['name']);
+        Navigator.pushNamed(context, Routes.locationRoute);
+      });
+      return Scaffold(
+        body: Center(
+          child: SpinKitDoubleBounce(
+            color: Colors.white,
+            size: 80,
+          ),
+        ),
+      );
+    });
+  }
+}

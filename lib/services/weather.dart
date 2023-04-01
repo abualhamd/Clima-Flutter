@@ -6,15 +6,15 @@ import 'networking.dart';
 final apiKey = dotenv.env['API_KEY'];
 const url = 'https://api.openweathermap.org/data/2.5/weather';
 
-class WeatherModel {
-  Future<dynamic> getCityWeather(String cityName) async {
+class WeatherServices {
+  Future<Map<String, dynamic>> getCityWeather(String cityName) async {
     NetworkHelper networkHelper =
         NetworkHelper('$url?q=$cityName&appid=$apiKey&units=metric');
     var weatherData = await networkHelper.getCurrentWeather();
     return weatherData;
   }
 
-  Future<dynamic> getLocationWeather() async {
+  Future<Map<String, dynamic>> getLocationWeather() async {
     Location location = Location();
     await location.getCurrentLocation();
 
