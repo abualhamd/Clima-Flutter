@@ -66,9 +66,6 @@ class _CityScreenState extends State<CityScreen> {
               ),
               TextButton(
                 onPressed: () {
-                  // const apiKey = '4ff60642df75fd6c1815218fe40b3d53';
-                  // NetworkHelper networkHelper = await NetworkHelper(
-                  //     'api.openweathermap.org/data/2.5/weather?q={$cityName&appid=$apiKey');
                   Navigator.pop(context, cityName);
                 },
                 child: Text(
