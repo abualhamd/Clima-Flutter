@@ -65,5 +65,3 @@ class CityProvider2 extends Notifier<Map<String, dynamic>> {
   }
 }
 // TODO replace the two instances of the WeatherServices
-
-
