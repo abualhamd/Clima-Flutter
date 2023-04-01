@@ -7,13 +7,10 @@ class Location {
     try {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.low);
-      this.latitude = position.latitude;
-      this.longitude = position.longitude;
+      latitude = position.latitude;
+      longitude = position.longitude;
     } catch (e) {
       print(e);
     }
   }
 }
-// String city = decodedData['name'];
-// var condition = decodedData['weather[0].description'];
-// var temprature = decodedData['main']['temp'];

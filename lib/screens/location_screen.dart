@@ -4,7 +4,7 @@ import 'package:clima/services/weather.dart';
 import 'city_screen.dart';
 
 class LocationScreen extends StatefulWidget {
-  LocationScreen({this.locationWeather});
+  const LocationScreen({Key key, this.locationWeather}) : super(key: key);
 
   final locationWeather;
   // String CityName = locationWeather['name'];
@@ -56,7 +56,7 @@ class _LocationScreenState extends State<LocationScreen> {
                 Colors.white.withOpacity(0.8), BlendMode.dstATop),
           ),
         ),
-        constraints: BoxConstraints.expand(),
+        constraints: const BoxConstraints.expand(),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
