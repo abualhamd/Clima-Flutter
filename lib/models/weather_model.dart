@@ -1,16 +1,22 @@
 class WeatherModel {
   String cityName;
-  int temp;
-  String cond;
+  int temprature;
+  String description;
+  String icon;
 
   WeatherModel(
-      {required this.cityName, required this.temp, required this.cond});
+      {required this.cityName,
+      required this.temprature,
+      required this.description,
+      required this.icon});
 
   factory WeatherModel.fromJson({required Map<String, dynamic> json}) {
     double tempDouble = json['main']['temp'];
     return WeatherModel(
-        cityName: json['name'],
-        temp: tempDouble.toInt(),
-        cond: json['weather'][0]['main']);
+      cityName: json['name'],
+      temprature: tempDouble.toInt(),
+      description: json['weather'][0]['description'],
+      icon: json['weather'][0]['icon'],
+    );
   }
 }

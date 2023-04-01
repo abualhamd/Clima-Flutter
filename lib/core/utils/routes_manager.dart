@@ -1,6 +1,6 @@
-import 'package:clima/screens/city_screen.dart';
-import 'package:clima/screens/loading_screen.dart';
-import 'package:clima/screens/location_screen.dart';
+import 'package:clima/view/screens/city_screen.dart';
+import 'package:clima/view/screens/loading_screen.dart';
+import 'package:clima/view/screens/location_screen.dart';
 import 'package:flutter/material.dart';
 import 'app_strings.dart';
 

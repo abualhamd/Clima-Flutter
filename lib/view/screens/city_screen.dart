@@ -1,13 +1,13 @@
-import 'package:clima/providers/weather_provider.dart';
+import 'package:clima/view/providers/weather_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:clima/utilities/constants.dart';
+import 'package:clima/core/utils/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../core/utils/snackbar_popup.dart';
+import '../../core/utils/snackbar_popup.dart';
 
 class CityScreen extends ConsumerWidget {
   CityScreen({Key? key}) : super(key: key);
-  
+
   final controller = TextEditingController();
 
   @override
@@ -64,11 +64,11 @@ class CityScreen extends ConsumerWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {
+                onPressed: () async {
                   if (controller.text.isNotEmpty) {
-                    ref
-                        .read(cityProvider.notifier)
-                        .changeCity(newCity: controller.text);
+                    await ref
+                        .read(weatherModelProvider.notifier)
+                        .updateCityWeatherModel(cityName: controller.text);
                     Navigator.pop(context);
                   } else {
                     displaySnackBar(context, 'Please Enter a city name');
