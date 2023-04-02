@@ -1,7 +1,10 @@
 import 'package:clima/view/providers/weather_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../core/utils/routes_manager.dart';
+import '../../../core/utils/assets_manager.dart';
+import '../../../core/utils/colors_manager.dart';
+import '../../../core/utils/routes_manager.dart';
+import '../../../core/utils/values_manager.dart';
 import 'widgets/weather_widget.dart';
 
 class LocationScreen extends ConsumerWidget {
@@ -23,7 +26,7 @@ class LocationScreen extends ConsumerWidget {
                   .updateLocationWeatherModel();
             },
             child: const Icon(
-              Icons.near_me,
+              IconsManager.locationIcon,
               size: 50.0,
             ),
           ),
@@ -33,21 +36,21 @@ class LocationScreen extends ConsumerWidget {
                 Navigator.pushNamed(context, Routes.cityRoute);
               },
               child: const Icon(
-                Icons.location_city,
+                IconsManager.cityIcon,
                 size: 50.0,
               ),
             ),
           ],
-          elevation: 0,
+          elevation: ValuesManger.s0,
           backgroundColor: Colors.transparent,
         ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('images/location_background.jpg'),
+              image: const AssetImage(ImagesManager.locationBackgrounImg),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(0.8), BlendMode.dstATop),
+                  ColorsManager.blueAccent.withOpacity(ValuesManger.s0_3), BlendMode.overlay),//dsTop
             ),
           ),
           constraints: const BoxConstraints.expand(),
@@ -55,7 +58,7 @@ class LocationScreen extends ConsumerWidget {
             data: (data) => WeatherWidget(
               weatherModel: data,
             ),
-            error: ((error, stackTrace) => Center(child: Text(error.toString()))),
+            error: ((error, stackTrace) => Center(child: Text(error.toString()))),//TODO add error message
             loading: () => const Center(child: CircularProgressIndicator()),
           ),
         ),

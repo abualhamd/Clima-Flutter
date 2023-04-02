@@ -2,7 +2,8 @@ import 'package:clima/view/providers/weather_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import '../../core/utils/routes_manager.dart';
+import '../../../core/utils/colors_manager.dart';
+import '../../../core/utils/routes_manager.dart';
 
 class LoadingScreen extends ConsumerWidget {
   const LoadingScreen({Key? key}) : super(key: key);
@@ -19,7 +20,7 @@ class LoadingScreen extends ConsumerWidget {
     return Scaffold(
       body: Center(
         child: SpinKitDoubleBounce(
-          color: Colors.white,
+          color: ColorsManager.white,
           size: 80,
         ),
       ),

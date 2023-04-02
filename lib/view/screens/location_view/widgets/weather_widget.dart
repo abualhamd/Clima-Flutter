@@ -2,9 +2,9 @@ import 'package:clima/core/utils/extensions/media_query_extension.dart';
 import 'package:clima/core/utils/extensions/weather_map_icon.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/utils/values_manager.dart';
-import '../../../models/weather_model.dart';
-import '../../../core/utils/constants.dart';
+import '../../../../core/utils/values_manager.dart';
+import '../../../../models/weather_model.dart';
+import '../../../../core/utils/constants.dart';
 
 class WeatherWidget extends StatelessWidget {
   const WeatherWidget({Key? key, required WeatherModel weatherModel})
