@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:clima/core/utils/constants.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/utils/snackbar_popup.dart';
+import '../../../core/utils/snackbar_popup.dart';
 
 class CityScreen extends ConsumerWidget {
   CityScreen({Key? key}) : super(key: key);
@@ -69,6 +69,9 @@ class CityScreen extends ConsumerWidget {
                     await ref
                         .read(weatherModelProvider.notifier)
                         .updateCityWeatherModel(cityName: controller.text);
+                    FocusScope.of(context).unfocus();
+                    await Future.delayed(const Duration(milliseconds: Constants.waitBeforeReturningToLocationScreen));
+
                     Navigator.pop(context);
                   } else {
                     displaySnackBar(context, 'Please Enter a city name');

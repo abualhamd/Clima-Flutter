@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+abstract class Constants {
+  static const int waitBeforeReturningToLocationScreen = 500;
+  // static double width = 0;//TODO make final and remove the zero
+}
+
 const kTempTextStyle = TextStyle(
   fontFamily: 'Spartan MB',
   fontSize: 100.0,
