@@ -16,7 +16,7 @@ class RouteGenerator {
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) =>  const LoadingScreen());
       case Routes.locationRoute:
-        return MaterialPageRoute(builder: (_) =>  LocationScreen());
+        return MaterialPageRoute(builder: (_) =>  const LocationScreen());
       case Routes.cityRoute:
         return MaterialPageRoute(builder: (_) =>  CityScreen());
       default:
