@@ -21,7 +21,7 @@ class LoadingScreen extends ConsumerWidget {
       body: Center(
         child: SpinKitDoubleBounce(
           color: ColorsManager.white,
-          size: 80, 
+          size: 80, //TODO add layout builder so the mediaquery size would be called once
         ),
       ),
     );
