@@ -15,13 +15,14 @@ class WeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = context.width;
-    return Padding(
-      padding: EdgeInsets.only(top: width * ValuesManger.s0_55),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+    return Column(
+      children: [
+        Column(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          SizedBox(
+            height: width * ValuesManger.s0_55,
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 15.0),
+            padding: EdgeInsets.only(left: width * ValuesManger.s0_03), //15.0
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -44,12 +45,14 @@ class WeatherWidget extends StatelessWidget {
             child: Text(
               // TODO
               "${_weatherModel.description} in ${_weatherModel.cityName}!",
+              softWrap: true,
+              // maxLines: 3,
               textAlign: TextAlign.right,
               style: kMessageTextStyle,
             ),
           ),
-        ],
-      ),
+        ]),
+      ],
     );
   }
 }

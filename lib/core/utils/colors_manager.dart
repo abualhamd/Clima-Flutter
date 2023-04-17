@@ -5,4 +5,5 @@ abstract class ColorsManager {
   static const black = Colors.black;
   static const blueAccent = Colors.blueAccent;
   static const grey = Colors.grey;
+  static const transparent = Colors.transparent; 
 }

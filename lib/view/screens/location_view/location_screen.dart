@@ -1,3 +1,4 @@
+import 'package:clima/core/utils/extensions/media_query_extension.dart';
 import 'package:clima/view/providers/weather_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,13 +9,13 @@ import '../../../core/utils/values_manager.dart';
 import 'widgets/weather_widget.dart';
 
 class LocationScreen extends ConsumerWidget {
-
-  const LocationScreen({Key? key}) : super(key: key); 
+  const LocationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final width = context.width;
+    final weatherModel = ref.watch(weatherModelProvider);
 
-    var weatherModel = ref.watch(weatherModelProvider);
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
@@ -25,9 +26,9 @@ class LocationScreen extends ConsumerWidget {
                   .read(weatherModelProvider.notifier)
                   .updateLocationWeatherModel();
             },
-            child: const Icon(
+            child: Icon(
               IconsManager.locationIcon,
-              size: 50.0,
+              size: width * ValuesManger.s0_15, 
             ),
           ),
           actions: [
@@ -35,14 +36,14 @@ class LocationScreen extends ConsumerWidget {
               onPressed: () {
                 Navigator.pushNamed(context, Routes.cityRoute);
               },
-              child: const Icon(
+              child: Icon(
                 IconsManager.cityIcon,
-                size: 50.0,
+                size: width * ValuesManger.s0_15,
               ),
             ),
           ],
           elevation: ValuesManger.s0,
-          backgroundColor: Colors.transparent,
+          backgroundColor: ColorsManager.transparent,
         ),
         body: Container(
           decoration: BoxDecoration(
@@ -50,7 +51,8 @@ class LocationScreen extends ConsumerWidget {
               image: const AssetImage(ImagesManager.locationBackgrounImg),
               fit: BoxFit.cover,
               colorFilter: ColorFilter.mode(
-                  ColorsManager.blueAccent.withOpacity(ValuesManger.s0_3), BlendMode.overlay),//dsTop
+                  ColorsManager.blueAccent.withOpacity(ValuesManger.s0_3),
+                  BlendMode.overlay), //dsTop
             ),
           ),
           constraints: const BoxConstraints.expand(),
@@ -58,7 +60,8 @@ class LocationScreen extends ConsumerWidget {
             data: (data) => WeatherWidget(
               weatherModel: data,
             ),
-            error: ((error, stackTrace) => Center(child: Text(error.toString()))),//TODO add error message
+            error: ((error, stackTrace) =>
+                Center(child: Text(error.toString()))), //TODO add error message
             loading: () => const Center(child: CircularProgressIndicator()),
           ),
         ),

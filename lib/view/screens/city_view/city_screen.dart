@@ -29,7 +29,6 @@ class CityScreen extends StatelessWidget {
                 GetWeatherButton(controller: controller),
               ],
             ),
-          
         ),
       ),
     );
